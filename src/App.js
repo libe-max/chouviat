@@ -157,7 +157,7 @@ export default class App extends Component {
     if (!e) return
     const isFirefox = navigator.userAgent.toLowerCase().match('firefox')
     const { deltaX, deltaY, wheelDeltaX, wheelDeltaY } = e.nativeEvent
-    const increment = isFirefox ? (deltaX + deltaY) * 2 : deltaX + deltaY
+    const increment = isFirefox ? (deltaX + deltaY) * 5 : deltaX + deltaY
     document.documentElement.scrollTo({
       top: 0,
       left: document.documentElement.scrollLeft + increment,
