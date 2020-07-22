@@ -4,17 +4,17 @@ const currentHostname = typeof window !== 'undefined' ? window.location.hostname
 const config = {
   meta: {
     author: 'Libé Labo',
-    title: 'Libération - ',
-    url: '',
-    description: '',
-    image: '',
-    xiti_id: 'test',
-    tweet: '',
+    title: 'Les 26 minutes fatales à Cédric Chouviat',
+    url: 'https://www.liberation.fr/apps/2020/07/26-minutes-fatales-a-cedric-chouviat',
+    description: 'Libération reconstitue, seconde par seconde, l\'interpellation qui a conduit à la mort du chauffeur-livreur, le 3 janvier à Paris.',
+    image: 'https://www.liberation.fr/apps/2020/07/26-minutes-fatales-a-cedric-chouviat/social.png',
+    xiti_id: '26-minutes-chouviat',
+    tweet: 'Libération reconstitue, seconde par seconde, l\'interpellation qui a conduit à la mort du chauffeur-livreur, le 3 janvier à Paris.',
   },
   tracking: {
     active: false,
-    format: 'libe-apps-template',
-    article: 'libe-apps-template'
+    format: 'chouviat',
+    article: 'chouviat'
   },
   show_header: true,
   statics_url: process.env.NODE_ENV === 'production'

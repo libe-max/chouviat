@@ -1,0 +1,363 @@
+body {
+  height: 100vh;
+  overflow-y: hidden;
+  display: flex;
+}
+
+#libe-menu {
+  min-width: unset !important;
+}
+
+#libe-labo-app-wrapper {
+  height: 100%;
+}
+
+.chouviat {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  background: #212121;
+}
+
+.chouviat > * {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.intro-panel,
+.outro-panel {
+  width: 100vw;
+  max-width: 63rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 .5rem;
+}
+
+.intro-panel .lblb-inter-title,
+.outro-panel .lblb-inter-title {
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  color: #EEEEEE;
+  letter-spacing: .05rem;
+}
+
+.intro-panel .lblb-paragraph,
+.outro-panel .lblb-paragraph {
+  max-width: 40rem;
+  margin-bottom: 1.5rem;
+  color: #EEEEEE;
+}
+
+.lblb-default-apps-footer {
+  margin-bottom: 0 !important;
+}
+
+.lblb-default-apps-footer .lblb-share-article {
+  margin: .25rem 0;
+  height: 3rem !important;
+}
+
+.lblb-default-apps-footer .lblb-share-article_short .lblb-share-article__facebook-button,
+.lblb-default-apps-footer .lblb-share-article_short .lblb-share-article__twitter-button {
+  background: transparent;
+}
+
+.lblb-default-apps-footer .lblb-article-meta__person,
+.lblb-default-apps-footer .lblb-article-meta__date {
+  color: #EEEEEE;
+}
+
+.lblb-default-apps-footer .lblb-article-meta__label {
+  color: #AAAAAA;
+}
+
+.lblb-default-apps-footer .lblb-article-meta {
+  margin: .25rem 0;
+}
+
+.lblb-default-apps-footer .lblb-libe-labo-logo {
+  margin: .5rem 0 0 0;
+  width: 3rem;
+}
+
+.timeline-panel {
+  margin: 0 2.5rem;
+  padding: 1.5rem 0 2.5rem 0;
+  height: 100%;
+}
+
+.timeline {
+  width: 6240px;
+  height: 100%;
+  position: relative;
+}
+
+/* * * * * * * * * * * * * * *
+ *
+ * TIMELINE BARS
+ *
+ * * * * * * * * * * * * * * */
+
+.timeline__bars {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.timeline__bar {
+  width: 4px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline__bar-line,
+.timeline__bar-line-opacity {
+  flex-grow: 1;
+  position: absolute;
+}
+
+.timeline__bar-text-top,
+.timeline__bar-text-bottom {
+  flex-grow: 0;
+  text-align: center;
+  transform: translateX(-50%);
+  position: absolute;
+  font-family: monospace;
+  color: #EEEEEE;
+}
+
+/* Minute */
+.timeline__minute-bar .timeline__bar-line {
+  top: 1.5rem;
+  bottom: 1.5rem;
+  width: 2px;
+  background: #EEEEEE;
+}
+
+.timeline__minute-bar .timeline__bar-line-opacity {
+  top: 4rem;
+  bottom: 4rem;
+  width: 2px;
+  background: rgba(33, 33, 33, .8);
+}
+
+.timeline__minute-bar  .timeline__bar-text-top {
+  top: 0;
+  font-weight: 800;
+}
+
+.timeline__minute-bar  .timeline__bar-text-bottom {
+  bottom: 0;
+  font-weight: 800;
+}
+
+/* Five second */
+.timeline__five-second-bar .timeline__bar-line {
+  top: 2.5rem;
+  bottom: 2.5rem;
+  width: 1px;
+  background: rgba(255, 255, 255, .5);
+}
+
+.timeline__five-second-bar .timeline__bar-line-opacity {
+  top: 3.5rem;
+  bottom: 3.5rem;
+  width: 2px;
+  background: rgba(33, 33, 33, .8);
+}
+
+.timeline__five-second-bar .timeline__bar-text-top {
+  top: 1rem;
+  font-size: 12px;
+}
+
+.timeline__five-second-bar .timeline__bar-text-bottom {
+  bottom: 1rem;
+  font-size: 12px;
+}
+
+/* Second */
+.timeline__second-bar .timeline__bar-line {
+  top: 2.5rem;
+  bottom: 2.5rem;
+  width: 1px;
+  background: rgba(255, 255, 255, .2);
+}
+
+.timeline__second-bar .timeline__bar-line-opacity {
+  top: 3.5rem;
+  bottom: 3.5rem;
+  width: 2px;
+  background: rgba(33, 33, 33, .8);
+}
+
+/* * * * * * * * * * * * * * *
+ *
+ * TIMELINE EVENTS
+ *
+ * * * * * * * * * * * * * * */
+.timeline__events {
+  position: absolute;
+  top: 5rem;
+  height: calc(100% - 19rem);
+  width: 100%;
+}
+
+.timeline__top-events {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 50%;
+}
+
+.timeline__bottom-events {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50%;
+}
+
+.timeline__event {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid #EEEEEE;
+  padding-left: 4px;
+}
+
+.timeline__event .lblb-paragraph {
+  margin-left: -6px;
+  border-left: 2px solid #212121;
+  color: #EEEEEE
+}
+
+.timeline__top-events .timeline__event {
+  bottom: 0;
+  justify-content: flex-start;
+}
+
+.timeline__bottom-events .timeline__event {
+  top: 0;
+  justify-content: flex-end;
+}
+
+.timeline__event-bubble {
+  width: .5rem;
+  height: .5rem;
+  background: #EEEEEE;
+  border-radius: 1rem;
+  position: absolute;
+  left: 0;
+  transform: translateX(-5px);
+}
+
+.timeline__top-events .timeline__event-bubble {
+  bottom: 0;
+}
+
+.timeline__bottom-events .timeline__event-bubble {
+  top: 0;
+}
+
+/* * * * * * * * * * * * * * *
+ *
+ * TIMELINE QUOTES
+ *
+ * * * * * * * * * * * * * * */
+.timeline__quotes {
+  position: absolute;
+  top: 5rem;
+  height: calc(100% - 19rem);
+  width: 100%;
+}
+
+.timeline__quote {
+  position: absolute;
+  top: 15%;
+}
+
+.timeline__quote .lblb-quote {
+  color: #999999;
+  font-weight: 700;
+  line-height: 1rem;
+}
+
+/* * * * * * * * * * * * * * *
+ *
+ * TIMELINE VIDEOS
+ *
+ * * * * * * * * * * * * * * */
+.timeline__videos {
+  position: absolute;
+  bottom: 5rem;
+  height: 9rem;
+  width: 100%;
+}
+
+.timeline__videos .lblb-annotation-title {
+  margin-left: .5rem;
+  color: #EEEEEE;
+}
+
+.timeline__video-line {
+  height: 1rem;
+  width: 100%;
+  margin-top: .5rem;
+  background: rgba(238, 238, 238, .1);
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.timeline__video-line-label {
+  position: absolute;
+  z-index: 200;
+  left: .5rem;
+  font-family: 'Synthese';
+  font-size: .75rem;
+  color: #EEEEEE;
+  text-shadow: 
+}
+
+.timeline__videos
+  .timeline__video-line:nth-child(2)
+    .timeline__video-item {
+      background: #999999;
+}
+
+.timeline__videos
+  .timeline__video-line:nth-child(3)
+    .timeline__video-item {
+      background: #86D1F5;
+}
+
+.timeline__videos
+  .timeline__video-line:nth-child(4)
+    .timeline__video-item {
+      background: #F9B000;
+}
+
+.timeline__videos
+  .timeline__video-line:nth-child(5)
+    .timeline__video-item {
+      background: #F9B000;
+}
+
+.timeline__videos
+  .timeline__video-line:nth-child(6)
+    .timeline__video-item {
+      background: #EF7D00;
+}
+
+.timeline__video-item {
+  position: absolute;
+  height: 100%; 
+  top: 0;
+}
+

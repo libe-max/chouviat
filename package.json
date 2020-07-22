@@ -2,8 +2,10 @@
   "name": "libe-apps-template",
   "version": "0.2.3",
   "private": true,
+  "homepage": "/apps/2020/07/26-minutes-fatales-a-cedric-chouviat",
   "dependencies": {
     "libe-components": "^1.2.0",
+    "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1",

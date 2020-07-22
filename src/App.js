@@ -4,7 +4,11 @@ import LoadingError from 'libe-components/lib/blocks/LoadingError'
 import ShareArticle from 'libe-components/lib/blocks/ShareArticle'
 import LibeLaboLogo from 'libe-components/lib/blocks/LibeLaboLogo'
 import ArticleMeta from 'libe-components/lib/blocks/ArticleMeta'
+import PageTitle from 'libe-components/lib/text-levels/PageTitle'
+import SectionTitle from 'libe-components/lib/text-levels/SectionTitle'
+import InterTitle from 'libe-components/lib/text-levels/InterTitle'
 import Paragraph from 'libe-components/lib/text-levels/Paragraph'
+import Timeline from './components/Timeline'
 
 export default class App extends Component {
   /* * * * * * * * * * * * * * * * *
@@ -14,7 +18,7 @@ export default class App extends Component {
    * * * * * * * * * * * * * * * * */
   constructor () {
     super()
-    this.c = 'lblb-some-app'
+    this.c = 'chouviat'
     this.state = {
       loading_sheet: true,
       error_sheet: null,
@@ -26,6 +30,8 @@ export default class App extends Component {
     this.fetchCredentials = this.fetchCredentials.bind(this)
     this.listenToKeyStrokes = this.listenToKeyStrokes.bind(this)
     this.watchKonamiCode = this.watchKonamiCode.bind(this)
+    this.handleBodyWheel = this.handleBodyWheel.bind(this)
+    this.handleBodyScroll = this.handleBodyScroll.bind(this)
   }
 
   /* * * * * * * * * * * * * * * * *
@@ -35,6 +41,7 @@ export default class App extends Component {
    * * * * * * * * * * * * * * * * */
   componentDidMount () {
     document.addEventListener('keydown', this.listenToKeyStrokes)
+    document.addEventListener('scroll', this.handleBodyScroll)
     this.fetchCredentials()
     if (this.props.spreadsheet) return this.fetchSheet()
     return this.setState({ loading_sheet: false })
@@ -143,6 +150,52 @@ export default class App extends Component {
 
   /* * * * * * * * * * * * * * * * *
    *
+   * HANDLE BODY WHEEL
+   *
+   * * * * * * * * * * * * * * * * */
+  handleBodyWheel (e) {
+    if (!e) return
+    const isFirefox = navigator.userAgent.toLowerCase().match('firefox')
+    const { deltaX, deltaY, wheelDeltaX, wheelDeltaY } = e.nativeEvent
+    const increment = isFirefox ? (deltaX + deltaY) * 2 : deltaX + deltaY
+    document.documentElement.scrollTo({
+      top: 0,
+      left: document.documentElement.scrollLeft + increment,
+      behaviour: 'smooth'
+    })
+  }
+
+  /* * * * * * * * * * * * * * * * *
+   *
+   * HANDLE BODY SCROLL
+   *
+   * * * * * * * * * * * * * * * * */
+  handleBodyScroll (e) {
+    // Move labels
+    const $timelinePanel = document.querySelector('.timeline-panel')
+    const $videosTitle = document.querySelector('.timeline__videos .lblb-annotation-title')
+    const $videosLinesLabels = document.querySelectorAll('.timeline__video-line-label')
+    if (!$timelinePanel || !$videosTitle || !$videosLinesLabels) return
+
+    const timelineXOffset = $timelinePanel.getBoundingClientRect().x
+    const timelineWidth = $timelinePanel.getBoundingClientRect().width
+    const darkCalculation = timelineXOffset + (timelineWidth - (window.innerWidth / 2))
+
+    if (timelineXOffset < 8 && darkCalculation > 0) {
+      $videosTitle.style.marginLeft = `${8 + -1 * timelineXOffset}px`
+      Array.prototype.forEach.call($videosLinesLabels, ($label) => {
+        $label.style.left = `${8 + -1 * timelineXOffset}px`
+      })
+    } else {
+      $videosTitle.style.marginLeft = null
+      Array.prototype.forEach.call($videosLinesLabels, ($label) => {
+        $label.style.left = null
+      })
+    }
+  }
+
+  /* * * * * * * * * * * * * * * * *
+   *
    * RENDER
    *
    * * * * * * * * * * * * * * * * */
@@ -171,18 +224,40 @@ export default class App extends Component {
     }
 
     /* Display component */
-    return <div className={classes.join(' ')}>
-      App is ready.<br />
-      - fill spreadsheet field in config.js<br />
-      - display it's content via state.data_sheet
-      <div className='lblb-default-apps-footer'>
-        <ShareArticle short iconsOnly tweet={props.meta.tweet} url={props.meta.url} />
-        <ArticleMeta
-          publishedOn='01/01/2020 12:00' authors={[
-            { name: 'Libé Labo', role: 'Production', link: 'https://www.liberation.fr/libe-labo-data-nouveaux-formats,100538' }
-          ]}
-        />
-        <LibeLaboLogo target='blank' />
+    return <div
+      className={classes.join(' ')}
+      onWheel={this.handleBodyWheel}>
+      <div className='intro-panel'>
+        <InterTitle small>Les 26 minutes fatales à Cédric Chouviat</InterTitle>
+        <Paragraph literary>Libération reconstitue, seconde par seconde, l'interpellation qui a conduit à la mort du chauffeur-livreur, le 3&nbsp;janvier à Paris.</Paragraph>
+        <Paragraph literary>
+          <a href='#'>Faites défiler par ici</a> →
+        </Paragraph>
+        <div className='lblb-default-apps-footer'>
+          <ShareArticle short iconsOnly tweet={props.meta.tweet} url={props.meta.url} />
+          <ArticleMeta
+            authors={[
+              { name: 'Libé Labo', role: 'Production', link: 'https://www.liberation.fr/libe-labo-data-nouveaux-formats,100538' }
+            ]}
+          />
+          <LibeLaboLogo target='blank' />
+        </div>
+      </div>
+      <div className='timeline-panel'>
+        <Timeline />
+      </div>
+      <div className='outro-panel'>
+        <Paragraph literary>Cédric Chouviat décède le 5 janvier, à l'hôpital Georges-Pompidou.</Paragraph>
+        <Paragraph literary><a href='https://www.liberation.fr/france/2020/07/21/mort-de-cedric-chouviat-l-enquete-qui-taille-en-pieces-la-version-des-policiers_1794858'>Lire notre enquête</a></Paragraph>
+        <div className='lblb-default-apps-footer'>
+          <ShareArticle short iconsOnly tweet={props.meta.tweet} url={props.meta.url} />
+          <ArticleMeta
+            authors={[
+              { name: 'Libé Labo', role: 'Production', link: 'https://www.liberation.fr/libe-labo-data-nouveaux-formats,100538' }
+            ]}
+          />
+          <LibeLaboLogo target='blank' />
+        </div>
       </div>
     </div>
   }
