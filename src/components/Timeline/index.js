@@ -122,7 +122,7 @@ class Timeline extends Component {
           <Quote small literary>
             Michaël P. : « Allez essuyer votre plaque»<br/>
             Cédric Chouviat : «Ouais ouais ouais. Par contre s'il vous plaît peut-être non ?»<br/>
-            Michaël P. : «Et alors, vous voulez que je me mette à quatre pattes ? Je vais vous sucez la bite aussi ?.. »<br/>
+            Michaël P. : «Et alors, vous voulez que je me mette à quatre pattes ? Je vais vous sucer la bite aussi ?.. »<br/>
           </Quote>
         </div>
 
